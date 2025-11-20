@@ -61,6 +61,11 @@ export default function Header({ menuActive, setMenuActive }: Props) {
             <Link href={`${locale === 'fr' ? '/get-involved-fr' : '/get-involved'} `}  className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
               {siteSettings?.menu.getInvolvedTitle.toUpperCase()}
             </Link>
+
+            <Link href={`${locale === 'fr' ? '/resources-fr' : '/resources'}`} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
+              RESOURCES
+            </Link>
+
             <SearchModal modalState={handleModalState} />
           </div>
         </div>

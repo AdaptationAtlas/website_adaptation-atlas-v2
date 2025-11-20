@@ -22,6 +22,8 @@ import {
   getSearchContentFr,
   getSiteSettings,
   getSiteSettingsFr,
+  getResourcesContent,
+  getResourcesContentFr,
 } from '@/lib/sanity.query'
 import { useLanguageContext } from '@/contexts/language-context'
 
@@ -44,6 +46,7 @@ export const SanityDataProvider = ({ children }: DataProviderProps) => {
   const [impacts, setImpacts] = useState<any>(null)
   const [searchContent, setSearchContent] = useState<any>(null)
   const [siteSettings, setSiteSettings] = useState<any>(null)
+  const [resourcesContent, setResourcesContent] = useState<any>(null)
   const { locale } = useLanguageContext()
 
   useEffect(() => {
@@ -51,6 +54,7 @@ export const SanityDataProvider = ({ children }: DataProviderProps) => {
       const home = (locale === 'fr') ? await getHomeContentFr() : await getHomeContent()
       const about = (locale === 'fr') ? await getAboutContentFr() : await getAboutContent()
       const getInvolved = (locale === 'fr') ? await getGetInvolvedContentFr() : await getGetInvolvedContent()
+      const resources = (locale === 'fr') ? await getResourcesContentFr() : await getResourcesContent()
       const spots = (locale === 'fr') ? await getSpotlightsFr() : await getSpotlights()
       const insight = (locale === 'fr') ? await getInsightsFr() : await getInsights()
       const impact = (locale === 'fr') ? await getImpactsFr() : await getImpacts()
@@ -63,6 +67,7 @@ export const SanityDataProvider = ({ children }: DataProviderProps) => {
       setHomeContent(home)
       setAboutContent(about)
       setGetInvovedContent(getInvolved)
+      setResourcesContent(resources)
       setSpotlights(spots)
       setInsights(insight)
       setImpacts(impact)
@@ -76,7 +81,7 @@ export const SanityDataProvider = ({ children }: DataProviderProps) => {
   }, [locale])
 
   return (
-    <SanityDataContext.Provider value={{ homeContent, aboutContent, getInvolvedContent, spotlights, insights, impacts, primaryTags, secondaryTags, searchContent, siteSettings }}>
+    <SanityDataContext.Provider value={{ homeContent, aboutContent, getInvolvedContent, resourcesContent, spotlights, insights, impacts, primaryTags, secondaryTags, searchContent, siteSettings }}>
       {children}
     </SanityDataContext.Provider>
   )

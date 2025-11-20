@@ -28,9 +28,10 @@ import dataCard from './schemas/data-card.schema'
 import contentText from './schemas/content-text.schema'
 import contentPage from './schemas/content-page.schema'
 import gallery from './schemas/gallery.schema'
+import resources from './schemas/page-resources.schema'
 
 const schema: { types: SchemaTypeDefinition[] } = {
-  types: [home, about, getInvolved, spotlightPost, insightPost, impactPost, settings, primaryTag, secondaryTag, dataCard, contentText, contentPage, gallery],
+  types: [home, about, getInvolved, spotlightPost, insightPost, impactPost, settings, primaryTag, secondaryTag, dataCard, contentText, contentPage, gallery, resources],
 }
 
 export default defineConfig({
@@ -76,6 +77,16 @@ export default defineConfig({
                   .id('getInvolved')
                   .schemaType('getInvolved')
                   .documentId('getInvolved')
+              ),
+            // Resources page
+            S.listItem()
+              .title('Resouces page')
+              .icon(BiFile)
+              .child(
+                S.editor()
+                  .id('resources')
+                  .schemaType('resources')
+                  .documentId('resources')
               ),
             // Visual divider
             S.divider(),
@@ -135,7 +146,7 @@ export default defineConfig({
     visionTool(),
     documentInternationalization({
       supportedLanguages: i18n.languages,
-      schemaTypes: ['home', 'about', 'getInvolved', 'spotlight', 'insight', 'impact', 'primaryTag', 'secondaryTag', 'settings'],
+      schemaTypes: ['home', 'about', 'resources', 'getInvolved', 'spotlight', 'insight', 'impact', 'primaryTag', 'secondaryTag', 'settings'],
       languageField: 'language',
     }),
   ],

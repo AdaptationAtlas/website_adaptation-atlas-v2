@@ -604,3 +604,41 @@ export async function getSiteSettingsFr(): Promise<Settings> {
     }
   )
 }
+
+// Resources page content
+export async function getResourcesContent(): Promise<Page> {
+  return getClient.fetch(
+    groq`*[_type == 'resources' && language != 'fr'][0] {
+      _id,
+      _createdAt,
+      title,
+      'slug': slug.current,
+      content,
+    }`,
+    {},
+    {
+      next: {
+        revalidate: 60
+      }
+    }
+  )
+}
+
+// Resources page content French
+export async function getResourcesContentFr(): Promise<Page> {
+  return getClient.fetch(
+    groq`*[_type == 'resources' && language == 'fr'][0] {
+      _id,
+      _createdAt,
+      title,
+      'slug': slug.current,
+      content,
+    }`,
+    {},
+    {
+      next: {
+        revalidate: 60
+      }
+    }
+  )
+}

@@ -110,6 +110,17 @@ export default defineType({
           description: 'Must match slug on Get Involved page',
           type: 'string',
         },
+        {
+          name: 'resourcesTitle',
+          title: 'Resources menu title',
+          type: 'string',
+        },
+        {
+          name: 'resourcesSlug',
+          title: 'Resources menu slug',
+          description: 'Must match slug on Resources page',
+          type: 'string',
+        },
       ]
     },
     {

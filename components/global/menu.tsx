@@ -91,6 +91,11 @@ const Menu = ({
       link: `/${siteSettings.menu.getInvolvedSlug}`,
       title: siteSettings.menu.getInvolvedTitle,
     },
+    {
+      id: "resources",
+      link: `/resources`,
+      title: "Resources",
+    },
   ]
 
   const year = new Date().getFullYear()
