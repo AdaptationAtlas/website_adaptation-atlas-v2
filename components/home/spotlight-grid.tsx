@@ -159,7 +159,7 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
                 </div>
               ) : (
                 <Link
-                  href={`/data-explorations/${spotlight.slug}`}
+                  href={spotlight.url ? spotlight.url : `/data-explorations/${spotlight.slug}`}
                   className="transition-opacity hover:opacity-90"
                 >
                   {/* Published post */}

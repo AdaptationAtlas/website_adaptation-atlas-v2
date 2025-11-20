@@ -13,7 +13,7 @@ export async function getHomeContent(): Promise<Home> {
       subTitle,
       'slug': slug.current,
       ctaText,
-      heroImage,  
+      heroImage,
       'heroImage': heroImage.asset->url,
       'heroImageAlt': heroImage.asset->alt,
       search,
@@ -47,7 +47,7 @@ export async function getHomeContentFr(): Promise<Home> {
       subTitle,
       'slug': slug.current,
       ctaText,
-      heroImage,  
+      heroImage,
       'heroImage': heroImage.asset->url,
       'heroImageAlt': heroImage.asset->alt,
       search,
@@ -176,6 +176,7 @@ export async function getSpotlights(): Promise<Spotlight[]> {
         name,
         slug,
       },
+      url,
     }`,
     {},
     {
@@ -216,6 +217,7 @@ export async function getSpotlightsFr(): Promise<Spotlight[]> {
         name,
         slug,
       },
+      url,
     }`,
     {},
     {
