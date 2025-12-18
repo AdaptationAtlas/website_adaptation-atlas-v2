@@ -89,17 +89,28 @@ export type Home = {
   tout: Tout
 }
 
-type Video = {
-  embedCode: string
+export type Video = {
+  embedCode?: string
   src: string
-  height: number
-  width: number
+  height?: number
+  width?: number
 }
 
 export type HowToVideo = {
   title: string
   description: string
   video: Video
+}
+
+export type ResourceVideo = Video & {
+  title?: string
+  description?: string
+}
+
+export type VideosSection = {
+  title?: string
+  description?: string
+  videos?: ResourceVideo[]
 }
 
 export type RelatedInfo = {
@@ -119,7 +130,9 @@ export type Page = {
   _createdAt: Date
   title: string
   slug: string
+  introContent?: PortableTextBlock[]
   content: PortableTextBlock[]
+  videosSection?: VideosSection
 }
 
 type Carousel = {
