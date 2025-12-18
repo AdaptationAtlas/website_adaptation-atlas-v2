@@ -42,6 +42,12 @@ const spotlightPost = {
       type: 'boolean',
     },
     {
+      name: 'prototype',
+      title: 'Prototype',
+      description: 'Check this box if the data exploration is live but still experimental. This keeps the link active while showing a prototype badge inviting feedback.',
+      type: 'boolean',
+    },
+    {
       name: 'upvotes',
       title: 'Upvotes',
       description: 'This field is controlled by the user. Appears if "Coming Soon" is marked true.',

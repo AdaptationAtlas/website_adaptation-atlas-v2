@@ -152,6 +152,30 @@ export default defineType({
           type: 'string',
         },
         {
+          name: 'prototypeLabel',
+          title: 'Prototype label',
+          description: 'Short label shown on prototype notebooks.',
+          type: 'string',
+        },
+        {
+          name: 'prototypeHelperText',
+          title: 'Prototype helper text',
+          description: 'Supporting line that explains the notebook is a prototype and invites feedback.',
+          type: 'string',
+        },
+        {
+          name: 'prototypeFeedbackLabel',
+          title: 'Prototype feedback label',
+          description: 'Link text for inviting feedback on prototype notebooks.',
+          type: 'string',
+        },
+        {
+          name: 'prototypeFeedbackLink',
+          title: 'Prototype feedback link',
+          description: 'Email or URL to collect prototype notebook feedback.',
+          type: 'string',
+        },
+        {
           name: 'upvoteLabel',
           title: 'Upvote label',
           type: 'string',
@@ -350,5 +374,3 @@ export default defineType({
     }
   ],
 })
-
-
