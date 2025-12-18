@@ -13,12 +13,13 @@ import {
 type Props = {
   setLanguage: React.Dispatch<React.SetStateAction<string>>
   isHome: boolean
+  triggerClassName?: string
 }
 function useForceUpdate() {
     let [value, setState] = useState(true);
     return () => setState(!value);
 }
-const LanguageSelect = ({ setLanguage, isHome }: Props) => {
+const LanguageSelect = ({ setLanguage, isHome, triggerClassName }: Props) => {
   
   const { setLocale, locale } = useLanguageContext()
   const router = useRouter()
@@ -30,7 +31,7 @@ const LanguageSelect = ({ setLanguage, isHome }: Props) => {
   }
   return (
     <Select onValueChange={handleLanguageSelect}>
-      <SelectTrigger className='fixed top-5 right-5'>
+      <SelectTrigger className={triggerClassName ?? 'fixed top-5 right-5'}>
         <SelectValue placeholder={locale === 'fr' ? 'FRANÇAIS' : 'ENGLISH'} />
       </SelectTrigger>
       <SelectContent className='bg-white'>

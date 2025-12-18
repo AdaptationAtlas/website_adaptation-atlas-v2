@@ -31,65 +31,62 @@ export default function Header({ menuActive, setMenuActive }: Props) {
     siteSettings,
   } = useSanityData()
   const { setLocale, locale } = useLanguageContext()
-  const [modalState, setModalState] = useState(false)
-  const handleModalState = (bool: boolean) => {
-    setModalState(bool)
-  }
+  const [, setModalState] = useState(false)
+  const handleModalState = setModalState
   return (
     <header className={cn(
       headerClass,
-      'flex items-center  z-50'
+      'flex items-center justify-between w-full z-50 pr-5 py-4'
     )}>
-      { isDesktop && (
-        <Link href='/' className='flex items-center justify-center mt-4 ml-5 mr-7'>
-          <Image // logo
-            src={'/images/atlas-a.svg'}
-            alt={'Atlas logo'}
-            width={50}
-            height={50}
-            className=''
-          />
-        </Link>
-      )}
-      {
-        isDesktop && <div className='mt-4'>
-          <div className='flex'>
-            <Link  href={`${locale === 'fr' ? '/about-fr' : '/about'} `} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
-              {siteSettings?.menu.aboutTitle.toUpperCase()} 
+      {isDesktop ? (
+        <>
+          <div className='flex items-center'>
+            <Link href='/' className='flex items-center justify-center ml-5 mr-7'>
+              <Image // logo
+                src={'/images/atlas-a.svg'}
+                alt={'Atlas logo'}
+                width={50}
+                height={50}
+                className=''
+              />
             </Link>
-            <DropdownExpandMenu />
-            <Link href={`${locale === 'fr' ? '/get-involved-fr' : '/get-involved'} `}  className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
-              {siteSettings?.menu.getInvolvedTitle.toUpperCase()}
-            </Link>
+            <div>
+              <div className='flex'>
+                <Link  href={`${locale === 'fr' ? '/about-fr' : '/about'} `} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
+                  {siteSettings?.menu.aboutTitle.toUpperCase()} 
+                </Link>
+                <DropdownExpandMenu />
+                <Link href={`${locale === 'fr' ? '/get-involved-fr' : '/get-involved'} `}  className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
+                  {siteSettings?.menu.getInvolvedTitle.toUpperCase()}
+                </Link>
 
-            <Link href={`${locale === 'fr' ? '/resources-fr' : '/resources'}`} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
-              RESOURCES
-            </Link>
-
-            <SearchModal modalState={handleModalState} />
+                <Link href={`${locale === 'fr' ? '/resources-fr' : '/resources'}`} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
+                  RESOURCES
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
-      }
-      {!isDesktop && (spotlights && insights && impacts && siteSettings) &&
-        <Menu
-          spotlights={spotlights}
-          insights={insights}
-          impacts={impacts}
-          siteSettings={siteSettings}
-          menuActive={menuActive}
-          setMenuActive={setMenuActive}
-        />
-      }
+          <div className='flex items-center gap-4 mr-5'>
+            <LanguageSelect setLanguage={setLocale} isHome={isHome} triggerClassName='relative top-0 right-0' />
+            <SearchModal modalState={handleModalState} className='mr-0' />
+          </div>
+        </>
+      ) : (
+        <>
+          {(spotlights && insights && impacts && siteSettings) &&
+            <Menu
+              spotlights={spotlights}
+              insights={insights}
+              impacts={impacts}
+              siteSettings={siteSettings}
+              menuActive={menuActive}
+              setMenuActive={setMenuActive}
+            />
+          }
+          <LanguageSelect setLanguage={setLocale} isHome={isHome} />
+        </>
+      )}
 
-      {/* localizationEnabled variable check temporarily disabled for the development site to preview French content */}
-      {/* IMPORTANT: be sure to re-enable this when pushing to production */}
-      {/* {siteSettings && siteSettings?.localiztionEnabled &&
-        <LanguageSelect setLanguage={setLocale} isHome={isHome} />
-      } */}
-
-      {/* Temporarily enabled for the development site to preview French content */}
-      {/* IMPORTANT: remove this line before pushing to production */}
-      <LanguageSelect setLanguage={setLocale} isHome={isHome} />
     </header>
   )
 }

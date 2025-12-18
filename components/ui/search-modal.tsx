@@ -1,14 +1,20 @@
 import React, { useEffect, useRef, useState } from "react"
+import cn from "classnames"
 import { useSanityData } from "@/contexts/data-context"
 import * as Collapsible from "@radix-ui/react-collapsible"
 import OutsideClickHandler from "react-outside-click-handler"
-import Link from "next/link"
+import Image from "next/image"
 import Search from "./search"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { breakpoints } from "@/lib/constants"
 import { usePathname, useSearchParams } from "next/navigation"
 
-const SearchModal = ({ modalState }: any) => {
+type Props = {
+  modalState?: (open: boolean) => void
+  className?: string
+}
+
+const SearchModal = ({ modalState, className }: Props) => {
   const [open, setOpen] = React.useState(false)
   const closeAll = () => {
     setOpen(false)
@@ -33,8 +39,10 @@ const SearchModal = ({ modalState }: any) => {
     setOpen(false)
   }, [pathname, searchParams])
   useEffect(() => {
-    modalState(open)
-  }, [open])
+    if (modalState) {
+      modalState(open)
+    }
+  }, [modalState, open])
   useEffect(() => {
     if (open) {
       setOpen(false)
@@ -42,7 +50,11 @@ const SearchModal = ({ modalState }: any) => {
   }, [isDesktop, isLgScreen, isTablet, isPhone])
   return (
     <Collapsible.Root
-      className={`CollapsibleRoot flex flex-col gap-5 md:gap-7 lg:gap-14 ${!isDesktop && ' z-[60] pl-[60px] pr-[20px] lg:pl-[300px]'} font-medium mr-12 h-full hover:text-brand-green transition-colors`}
+      className={cn(
+        "CollapsibleRoot flex flex-col gap-5 md:gap-7 lg:gap-14 font-medium h-full hover:text-brand-green transition-colors",
+        !isDesktop && " z-[60] pl-[60px] pr-[20px] lg:pl-[300px]",
+        className ?? "mr-12"
+      )}
       open={open}
       onOpenChange={setModalOpen}
     >
@@ -54,19 +66,28 @@ const SearchModal = ({ modalState }: any) => {
         }}
       >
         <Collapsible.Trigger asChild>
-          <Link
-            href={""}
+          <button
+            type="button"
             onClick={setModalOpen}
-            className={`${
+            aria-label={homeContent?.search.menuTitle ?? "Search"}
+            className={`flex items-center justify-center ${
               !isDesktop
                 ? "text-white text-xl md:text-2xl lg:text-4xl font-medium tracking-wide"
-                : "mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors"
+                : "mr-0 w-10 h-10 rounded-full hover:bg-grey-100 transition-colors"
             }`}
           >
-            {!isDesktop
-              ? homeContent?.search.menuTitle
-              : homeContent?.search.menuTitle.toUpperCase()}
-          </Link>
+            {isDesktop ? (
+              <Image
+                src={"/images/icon-search.svg"}
+                alt=""
+                width={18}
+                height={18}
+                className="w-[18px] h-[18px]"
+              />
+            ) : (
+              (homeContent?.search.menuTitle ?? "Search")
+            )}
+          </button>
         </Collapsible.Trigger>
       </div>
       <div
