@@ -616,6 +616,18 @@ export async function getResourcesContent(): Promise<Page> {
       title,
       'slug': slug.current,
       content,
+      videosSection {
+        title,
+        description,
+        videos[] {
+          title,
+          description,
+          embedCode,
+          src,
+          height,
+          width,
+        }
+      },
     }`,
     {},
     {
@@ -635,6 +647,18 @@ export async function getResourcesContentFr(): Promise<Page> {
       title,
       'slug': slug.current,
       content,
+      videosSection {
+        title,
+        description,
+        videos[] {
+          title,
+          description,
+          embedCode,
+          src,
+          height,
+          width,
+        }
+      },
     }`,
     {},
     {
