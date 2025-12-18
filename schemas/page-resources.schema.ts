@@ -32,6 +32,12 @@ export default defineType({
       type: 'contentPage',
     },
     {
+      name: 'introContent',
+      title: 'Intro content',
+      description: 'Optional text that appears above the videos section.',
+      type: 'contentPage',
+    },
+    {
       name: 'videosSection',
       title: 'Videos',
       description: 'Optional section to feature one or more videos.',

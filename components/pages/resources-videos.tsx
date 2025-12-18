@@ -10,7 +10,7 @@ const ResourcesVideos = ({ videosSection }: Props) => {
   if (!hasVideos) return null
 
   return (
-    <section className='max-w-[1100px] mx-auto'>
+    <section className='max-w-[940px] mx-auto w-full'>
       <div className='flex flex-col gap-4 mb-6'>
         {videosSection?.title && (
           <h2 className='text-3xl font-semibold leading-tight'>{videosSection.title}</h2>

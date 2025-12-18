@@ -615,6 +615,7 @@ export async function getResourcesContent(): Promise<Page> {
       _createdAt,
       title,
       'slug': slug.current,
+      introContent,
       content,
       videosSection {
         title,
@@ -646,6 +647,7 @@ export async function getResourcesContentFr(): Promise<Page> {
       _createdAt,
       title,
       'slug': slug.current,
+      introContent,
       content,
       videosSection {
         title,

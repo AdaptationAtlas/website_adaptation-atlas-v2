@@ -13,7 +13,7 @@ const ResourcesContent = () => {
 
   if (!resourcesContent) return null
 
-  const { title, content, videosSection } = resourcesContent as Page
+  const { title, introContent, content, videosSection } = resourcesContent as Page
 
   return (
     <div id='resources' className='p-5 mt-20 lg:mt-32'>
@@ -21,10 +21,13 @@ const ResourcesContent = () => {
         <h1 className='page-header'>{title}</h1>
       </header>
       <div id='page-content' className='mb-[100px] space-y-16'>
+        {introContent && (
+          <PortableText value={introContent} components={portableTextPage} />
+        )}
+        <ResourcesVideos videosSection={videosSection} />
         {content && (
           <PortableText value={content} components={portableTextPage} />
         )}
-        <ResourcesVideos videosSection={videosSection} />
       </div>
     </div>
   )
