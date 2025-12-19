@@ -100,106 +100,135 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
       </div>
       <div id="grid" className="flex flex-wrap -mx-3">
         {filteredSpotlights &&
-          filteredSpotlights.map((spotlight: Spotlight) => (
-            <div
-              key={spotlight._id}
-              className="block basis-full sm:basis-1/2 md:basis-1/3 xl:basis-1/4 px-2.5 mb-10"
-            >
-              {spotlight.comingSoon || spotlight.underMaintenance ? (
-                <div className="relative">
-                  {/* Coming soon post */}
-                  <div className="flex justify-center items-center h-[240px] xl:h-[280px] mb-2 relative">
-                    <div className="absolute z-10 flex justify-center items-center h-10 w-10 top-3 right-3 bg-grey-600 opacity-30">
-                      <Image // icon
-                        src={"/images/icon-bars.svg"}
-                        alt={"Bars icon"}
-                        width={20}
-                        height={20}
+          filteredSpotlights.map((spotlight: Spotlight) => {
+            const isUnavailable = spotlight.comingSoon || spotlight.underMaintenance
+            const isPrototype = Boolean(spotlight.prototype)
+            const prototypeLabel = homeContent.pageHeaders.prototypeLabel
+            const prototypeHelperText = homeContent.pageHeaders.prototypeHelperText
+            const prototypeFeedbackLabel = homeContent.pageHeaders.prototypeFeedbackLabel
+            const prototypeFeedbackLink = homeContent.pageHeaders.prototypeFeedbackLink
+
+            return (
+              <div
+                key={spotlight._id}
+                className="block basis-full sm:basis-1/2 md:basis-1/3 xl:basis-1/4 px-2.5 mb-10"
+              >
+                {isUnavailable ? (
+                  <div className="relative">
+                    {/* Coming soon or maintenance post */}
+                    <div className="flex justify-center items-center h-[240px] xl:h-[280px] mb-2 relative">
+                      <div className="absolute z-10 flex justify-center items-center h-10 w-10 top-3 right-3 bg-grey-600 opacity-30">
+                        <Image // icon
+                          src={"/images/icon-bars.svg"}
+                          alt={"Bars icon"}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <Image
+                        src={spotlight.featuredImage}
+                        alt={spotlight.featuredImageAlt}
+                        layout="fill"
+                        objectFit="cover"
+                        className="object-center opacity-30"
                       />
+                      <div className="relative z-10 flex flex-col justify-center items-center ">
+                        <h3 className="uppercase font-medium mb-1">
+                          {spotlight.underMaintenance
+                            ? homeContent.pageHeaders.underMaintenanceLabel
+                            : homeContent.pageHeaders.comingSoonLabel}
+                        </h3>
+                        <button
+                          onClick={() => {
+                            handleUpvote(spotlight._id)
+                          }}
+                          disabled={votes[spotlight._id]}
+                          className="flex justify-between items-center gap-0.5 text-brand-green disabled:opacity-50"
+                        >
+                          <span className="font-semibold">
+                            {homeContent.pageHeaders?.upvoteLabel}{" "}
+                            {!votes[spotlight._id]
+                              ? spotlight.upvotes
+                              : spotlight.upvotes + 1}
+                          </span>
+                          <BiUpArrowAlt className="scale-125" />
+                        </button>
+                        <a
+                          href={homeContent.pageHeaders.notifyMeLink}
+                          className="text-brand-green font-medium"
+                        >
+                          {homeContent.pageHeaders.notifyMeLabel}
+                        </a>
+                      </div>
                     </div>
-                    <Image
-                      src={spotlight.featuredImage}
-                      alt={spotlight.featuredImageAlt}
-                      layout="fill"
-                      objectFit="cover"
-                      className="object-center opacity-30"
-                    />
-                    <div className="relative z-10 flex flex-col justify-center items-center ">
-                      <h3 className="uppercase font-medium mb-1">
-                        {spotlight.underMaintenance
-                          ? homeContent.pageHeaders.underMaintenanceLabel
-                          : homeContent.pageHeaders.comingSoonLabel}
-                      </h3>
-                      <button
-                        onClick={() => {
-                          handleUpvote(spotlight._id)
-                        }}
-                        disabled={votes[spotlight._id]}
-                        className="flex justify-between items-center gap-0.5 text-brand-green disabled:opacity-50"
-                      >
-                        <span className="font-semibold">
-                          {homeContent.pageHeaders?.upvoteLabel}{" "}
-                          {!votes[spotlight._id]
-                            ? spotlight.upvotes
-                            : spotlight.upvotes + 1}
-                        </span>
-                        <BiUpArrowAlt className="scale-125" />
-                      </button>
-                      <a
-                        href={homeContent.pageHeaders.notifyMeLink}
-                        className="text-brand-green font-medium"
-                      >
-                        {homeContent.pageHeaders.notifyMeLabel}
-                      </a>
-                    </div>
+                    <h3 className="uppercase font-medium mb-2">
+                      {spotlight.title}
+                    </h3>
                   </div>
-                  <h3 className="uppercase font-medium mb-2">
-                    {spotlight.title}
-                  </h3>
+                ) : (
+                  <Link
+                    href={spotlight.url ? spotlight.url : `/data-explorations/${spotlight.slug}`}
+                    className="transition-opacity hover:opacity-90"
+                  >
+                    {/* Published post */}
+                    <div className="relative flex justify-center items-center h-[240px] xl:h-[280px] mb-2">
+                      <div className="absolute z-10 flex justify-center items-center h-10 w-10 top-3 right-3 bg-grey-600">
+                        <Image // icon
+                          src={"/images/icon-bars.svg"}
+                          alt={"Bars icon"}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <Image
+                        src={spotlight.featuredImage}
+                        alt={spotlight.featuredImageAlt}
+                        layout="fill"
+                        objectFit="cover"
+                        className="object-center"
+                      />
+                      {isPrototype && prototypeLabel && (
+                        <div className="absolute z-10 bottom-0 left-0 right-0 flex flex-col items-center text-center gap-1 px-3 py-3 bg-white/70">
+                          <span className="font-medium mb-1 font-semibold uppercase tracking-wide text-grey-900">
+                            {prototypeLabel}
+                          </span>
+                          {prototypeHelperText && (
+                            <p className="text-sm text-grey-900 leading-snug">
+                              {prototypeHelperText}
+                            </p>
+                          )}
+                          {prototypeFeedbackLabel && prototypeFeedbackLink && (
+                            <a
+                              href={prototypeFeedbackLink}
+                              className="font-medium text-brand-green font-semibold"
+                            >
+                              {prototypeFeedbackLabel}
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="uppercase font-medium mb-2">
+                      {spotlight.title}
+                    </h3>
+                  </Link>
+                )}
+                <div className="flex gap-x-3 gap-y-1 flex-wrap">
+                  {spotlight.featuredTags &&
+                    spotlight.featuredTags.map((tag) => {
+                      return (
+                        <p
+                          key={tag._id}
+                          className="text-brand-green text-sm font-medium"
+                        >
+                          {tag.name}
+                        </p>
+                      )
+                    })}
                 </div>
-              ) : (
-                <Link
-                  href={spotlight.url ? spotlight.url : `/data-explorations/${spotlight.slug}`}
-                  className="transition-opacity hover:opacity-90"
-                >
-                  {/* Published post */}
-                  <div className="relative flex justify-center items-center h-[240px] xl:h-[280px] mb-2">
-                    <div className="absolute z-10 flex justify-center items-center h-10 w-10 top-3 right-3 bg-grey-600">
-                      <Image // icon
-                        src={"/images/icon-bars.svg"}
-                        alt={"Bars icon"}
-                        width={20}
-                        height={20}
-                      />
-                    </div>
-                    <Image
-                      src={spotlight.featuredImage}
-                      alt={spotlight.featuredImageAlt}
-                      layout="fill"
-                      objectFit="cover"
-                      className="object-center"
-                    />
-                  </div>
-                  <h3 className="uppercase font-medium mb-2">
-                    {spotlight.title}
-                  </h3>
-                </Link>
-              )}
-              <div className="flex gap-x-3 gap-y-1 flex-wrap">
-                {spotlight.featuredTags &&
-                  spotlight.featuredTags.map((tag) => {
-                    return (
-                      <p
-                        key={tag._id}
-                        className="text-brand-green text-sm font-medium"
-                      >
-                        {tag.name}
-                      </p>
-                    )
-                  })}
               </div>
-            </div>
-          ))}
+            )
+          })}
 
         {!filteredSpotlights.length && (
           <div className="mx-auto my-20">

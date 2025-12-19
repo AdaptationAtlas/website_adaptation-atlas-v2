@@ -156,6 +156,7 @@ export async function getSpotlights(): Promise<Spotlight[]> {
       content,
       'comingSoon': comingSoon,
       'underMaintenance': underMaintenance,
+      'prototype': prototype,
       'upvotes': upvotes,
       'carousel': carousel,
       'slug': slug.current,
@@ -197,6 +198,7 @@ export async function getSpotlightsFr(): Promise<Spotlight[]> {
       content,
       'comingSoon': comingSoon,
       'underMaintenance': underMaintenance,
+      'prototype': prototype,
       'upvotes': upvotes,
       'carousel': carousel,
       'slug': slug.current,
@@ -237,6 +239,7 @@ export async function getSearchContent(): Promise<SearchItem[]> {
       title,
       'comingSoon': comingSoon,
       'underMaintenance': underMaintenance,
+      'prototype': prototype,
       'slug': slug.current,
       content,
       'featuredTags': tags.featured[]->{
@@ -273,6 +276,7 @@ export async function getSearchContentFr(): Promise<SearchItem[]> {
       title,
       'comingSoon': comingSoon,
       'underMaintenance': underMaintenance,
+      'prototype': prototype,
       'slug': slug.current,
       content,
       'featuredTags': tags.featured[]->{
@@ -387,6 +391,7 @@ export async function getSpotlightPost(slug: string): Promise<Spotlight> {
       _id,
       _createdAt,
       title,
+      'prototype': prototype,
       'slug': slug.current,
       'featuredImage': featuredImage.asset->url,
       'featuredImageAlt': featuredImage.asset->alt,
@@ -615,7 +620,20 @@ export async function getResourcesContent(): Promise<Page> {
       _createdAt,
       title,
       'slug': slug.current,
+      introContent,
       content,
+      videosSection {
+        title,
+        description,
+        videos[] {
+          title,
+          description,
+          embedCode,
+          src,
+          height,
+          width,
+        }
+      },
     }`,
     {},
     {
@@ -634,7 +652,20 @@ export async function getResourcesContentFr(): Promise<Page> {
       _createdAt,
       title,
       'slug': slug.current,
+      introContent,
       content,
+      videosSection {
+        title,
+        description,
+        videos[] {
+          title,
+          description,
+          embedCode,
+          src,
+          height,
+          width,
+        }
+      },
     }`,
     {},
     {

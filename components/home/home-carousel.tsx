@@ -36,6 +36,27 @@ const HomeCarousel = () => {
                   layout="fill"
                   objectFit="cover"
                 />
+                {spotlight.prototype && homeContent.pageHeaders.prototypeLabel && (
+                  <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center text-center gap-1 px-4 py-3 bg-white/70 z-40">
+                    <span className="font-medium mb-1 font-semibold uppercase tracking-wide text-grey-900">
+                      {homeContent.pageHeaders.prototypeLabel}
+                    </span>
+                    {homeContent.pageHeaders.prototypeHelperText && (
+                      <p className="text-sm text-grey-900 leading-snug">
+                        {homeContent.pageHeaders.prototypeHelperText}
+                      </p>
+                    )}
+                    {homeContent.pageHeaders.prototypeFeedbackLabel &&
+                      homeContent.pageHeaders.prototypeFeedbackLink && (
+                        <a
+                          href={homeContent.pageHeaders.prototypeFeedbackLink}
+                          className="font-medium text-brand-green font-semibold"
+                        >
+                          {homeContent.pageHeaders.prototypeFeedbackLabel}
+                        </a>
+                      )}
+                  </div>
+                )}
                 <div
                   id="carousel-content"
                   className="relative h-[340px] w-[340px] p-[40px] lg:h-[575px] lg:w-[575px] lg:p-[100px] flex justify-center items-center flex-col text-center rounded-full bg-white z-50"
