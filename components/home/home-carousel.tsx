@@ -28,7 +28,7 @@ const HomeCarousel = () => {
             {publishedSpotlights.map((spotlight: Spotlight) => (
               <CarouselItem
                 key={spotlight._id}
-                className="relative flex justify-center items-center overflow-hidden"
+                className="relative flex justify-center items-center"
               >
                 <Image
                   src={spotlight.featuredImage}

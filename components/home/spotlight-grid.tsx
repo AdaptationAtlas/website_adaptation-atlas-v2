@@ -171,7 +171,7 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
                     className="transition-opacity hover:opacity-90"
                   >
                     {/* Published post */}
-                    <div className="relative flex justify-center items-center h-[240px] xl:h-[280px] mb-2 overflow-hidden">
+                    <div className="relative flex justify-center items-center h-[240px] xl:h-[280px] mb-2">
                       <div className="absolute z-10 flex justify-center items-center h-10 w-10 top-3 right-3 bg-grey-600">
                         <Image // icon
                           src={"/images/icon-bars.svg"}
