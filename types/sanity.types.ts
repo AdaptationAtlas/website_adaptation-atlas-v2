@@ -66,7 +66,6 @@ type PageHeaders = {
   prototypeHelperText?: string
   prototypeFeedbackLabel?: string
   prototypeFeedbackLink?: string
-  upvoteLabel: string
   notifyMeLabel: string
   notifyMeLink: string
   insightTitle: string
@@ -165,7 +164,6 @@ export type Spotlight = {
   comingSoon: boolean
   underMaintenance: boolean
   prototype?: boolean
-  upvotes: number
   slug: string
   featuredImage: string
   featuredImageAlt: string

@@ -101,7 +101,6 @@ export const getSpotlights = (locale: string) =>
     'comingSoon': comingSoon,
     'underMaintenance': underMaintenance,
     'prototype': prototype,
-    'upvotes': upvotes,
     'carousel': carousel,
     'slug': slug.current,
     'featuredImage': featuredImage.asset->url,

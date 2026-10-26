@@ -48,14 +48,6 @@ const spotlightPost = {
       type: 'boolean',
     },
     {
-      name: 'upvotes',
-      title: 'Upvotes',
-      description: 'This field is controlled by the user. Appears if "Coming Soon" is marked true.',
-      type: 'number',
-      initialValue: 0, // Default to zero
-      // hidden: true,
-    },    
-    {
       name: 'featuredImage',
       title: 'Featured image',
       type: 'image',
