@@ -4,7 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.sanity.io', // accept images from sanity.io servers
+        hostname: 'cdn.sanity.io',
+        pathname: '/images/gukr2buh/**', // only this project's images, not any sanity project
         port: '',
       }
     ]
