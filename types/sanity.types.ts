@@ -209,6 +209,8 @@ type Menu = {
   aboutSlug: string
   getInvolvedTitle: string
   getInvolvedSlug: string
+  resourcesTitle?: string
+  resourcesSlug?: string
 }
 
 type ContentTypes = {

@@ -129,6 +129,7 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
                         src={spotlight.featuredImage}
                         alt={spotlight.featuredImageAlt}
                         layout="fill"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
                         objectFit="cover"
                         className="object-center opacity-30"
                       />
@@ -184,6 +185,7 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
                         src={spotlight.featuredImage}
                         alt={spotlight.featuredImageAlt}
                         layout="fill"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
                         objectFit="cover"
                         className="object-center"
                       />
