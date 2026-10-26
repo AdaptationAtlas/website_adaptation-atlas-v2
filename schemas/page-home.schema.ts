@@ -176,11 +176,6 @@ export default defineType({
           type: 'string',
         },
         {
-          name: 'upvoteLabel',
-          title: 'Upvote label',
-          type: 'string',
-        },
-        {
           name: 'notifyMeLabel',
           title: 'Notify me label',
           type: 'string',

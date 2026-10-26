@@ -11,8 +11,6 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel"
-import { incrementUpvote } from "@/utils/incrementUpvote"
-import { BiUpArrowAlt } from "react-icons/bi"
 
 type Props = {
   homeContent: Home
@@ -24,13 +22,6 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
   const [filteredSpotlights, setFilteredSpotlights] = useState(spotlights)
   const [activeTags, setActiveTags] = useState<Tag[]>([])
   const [query, setQuery] = useState("")
-  // State to track voting, initialized with each spotlight ID set to false
-  const [votes, setVotes] = useState<{ [key: string]: boolean }>(() =>
-    spotlights.reduce(
-      (acc, spotlight) => ({ ...acc, [spotlight._id]: false }),
-      {}
-    )
-  )
 
   // Reset search query and show all items
   const resetFilter = () => {
@@ -43,18 +34,6 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
   const resetTags = () => {
     // setFilteredSpotlights(spotlights) // reset filter
     setActiveTags([])
-  }
-
-  const handleUpvote = (id: string) => {
-    if (!votes[id]) {
-      incrementUpvote(id)
-      // Update the voted state for the specific spotlight
-      setVotes((prevVotes) => ({
-        ...prevVotes,
-        [id]: true,
-      }))
-      // Optionally, refresh the spotlight data to show the updated upvote count
-    }
   }
 
   return (
@@ -139,21 +118,6 @@ const SpotlightGrid = ({ homeContent, spotlights, tags }: Props) => {
                             ? homeContent.pageHeaders.underMaintenanceLabel
                             : homeContent.pageHeaders.comingSoonLabel}
                         </h3>
-                        <button
-                          onClick={() => {
-                            handleUpvote(spotlight._id)
-                          }}
-                          disabled={votes[spotlight._id]}
-                          className="flex justify-between items-center gap-0.5 text-brand-green disabled:opacity-50"
-                        >
-                          <span className="font-semibold">
-                            {homeContent.pageHeaders?.upvoteLabel}{" "}
-                            {!votes[spotlight._id]
-                              ? spotlight.upvotes
-                              : spotlight.upvotes + 1}
-                          </span>
-                          <BiUpArrowAlt className="scale-125" />
-                        </button>
                         <a
                           href={homeContent.pageHeaders.notifyMeLink}
                           className="text-brand-green font-medium"
