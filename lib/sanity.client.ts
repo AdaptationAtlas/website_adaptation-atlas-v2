@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 // TODO - Import project id and dataset from .env file
 
 const NEXT_PUBLIC_SANITY_PROJECT_ID = 'gukr2buh'
