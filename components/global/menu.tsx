@@ -93,8 +93,8 @@ const Menu = ({
     },
     {
       id: "resources",
-      link: `/resources`,
-      title: "Resources",
+      link: `/${siteSettings.menu.resourcesSlug ?? 'resources'}`,
+      title: siteSettings.menu.resourcesTitle,
     },
   ]
 

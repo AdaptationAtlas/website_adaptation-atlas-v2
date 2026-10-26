@@ -62,8 +62,8 @@ export default function Header({ menuActive, setMenuActive }: Props) {
               {siteSettings?.menu.getInvolvedTitle.toUpperCase()}
             </Link>
 
-            <Link href={`${locale === 'fr' ? '/resources-fr' : '/resources'}`} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
-              RESOURCES
+            <Link href={`/${siteSettings?.menu.resourcesSlug ?? 'resources'}`} className='mr-11 text-l font-medium text-grey-600 hover:text-brand-green transition-colors'>
+              {siteSettings?.menu.resourcesTitle?.toUpperCase()}
             </Link>
 
             <SearchModal modalState={handleModalState} />
