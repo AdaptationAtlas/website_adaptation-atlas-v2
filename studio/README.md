@@ -2,6 +2,8 @@
 
 The content editor for the Atlas site. Hosted by Sanity, so it needs no server of ours.
 
+It is available at https://africa-adaptation-atlas.sanity.studio or at `/admin` on the site. Both work and edit the same dataset.
+
 ```sh
 cd studio
 npm install
